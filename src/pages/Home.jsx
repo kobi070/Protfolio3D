@@ -12,6 +12,7 @@ import { useState } from 'react';
 
 const Home = () => {
   const [isRoatating, setIsRotating] = useState(false);
+  const [currentState, setCurrentStage] = useState(1);
 
 
   const adjustIslandForScreenSize = () => {
@@ -57,13 +58,14 @@ const Home = () => {
 
 
           <Bird />
-          <Sky />
+          <Sky isRoatating={isRoatating}/>
           <Island
             isRotating={isRoatating}
             setIsRotating={setIsRotating}
+            setCurrentStage={setCurrentStage}
             position={islandPosition}
             scale={islandScale}
-            rotation={islandRoatation} // fixed typo here
+            rotation={islandRoatation}
           />
           <Plane
             isRoatating={isRoatating}
