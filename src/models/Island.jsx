@@ -15,7 +15,7 @@ import { a } from '@react-spring/three';
 import islandScene from '../assets/3d/island.glb';
 
 // eslint-disable-next-line no-unused-vars
-const Island = ({ isRotating, setIsRotating, ...props }) => {
+export function Island({ isRotating, setIsRotating, ...props }) {
 
   const islandRef = useRef();
 
@@ -28,7 +28,7 @@ const Island = ({ isRotating, setIsRotating, ...props }) => {
 
   // Use a ref for rotation speed
   const rotationSpeed = useRef(0);
-  
+
   // Define a damping factor to control rotation damping
   const dampingFactor = 0.95;
 
@@ -134,6 +134,9 @@ const Island = ({ isRotating, setIsRotating, ...props }) => {
     canvas.addEventListener("pointermove", handlePointerMove);
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
+    canvas.addEventListener("touchstart", handleTouchStart);
+    canvas.addEventListener("touchend", handleTouchEnd);
+    canvas.addEventListener("touchmove", handleTouchMove);
 
     return () => {
       canvas.removeEventListener("pointerdown", handlePointerDown);
@@ -141,18 +144,28 @@ const Island = ({ isRotating, setIsRotating, ...props }) => {
       canvas.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
+      canvas.removeEventListener("touchstart", handleTouchStart);
+      canvas.removeEventListener("touchend", handleTouchEnd);
+      canvas.removeEventListener("touchmove", handleTouchMove);
     };
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove])
 
 
+  // This function is called on each frame update
   useFrame(() => {
+    // If not rotating, apply damping to slow down the rotation (smoothly)
     if (!isRotating) {
+      // Apply damping factor
       rotationSpeed.current *= dampingFactor;
 
-      if (Math.abs(rotationSpeed.current) < 0.01) {
+      // Stop rotation when speed is very small
+      if (Math.abs(rotationSpeed.current) < 0.001) {
         rotationSpeed.current = 0;
       }
+
+      islandRef.current.rotation.y += rotationSpeed.current;
     } else {
+      // When rotating, determine the current stage based on island's orientation
       const rotation = islandRef.current.rotation.y;
 
       /**
@@ -170,7 +183,7 @@ const Island = ({ isRotating, setIsRotating, ...props }) => {
        *     modulo operation to the value obtained in step 2. This step guarantees that the value
        *     always stays within the range of 0 to 2 * Math.PI, which is equivalent to a full
        *     circle in radians.
-      */
+       */
       const normalizedRotation =
         ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
@@ -191,8 +204,9 @@ const Island = ({ isRotating, setIsRotating, ...props }) => {
         default:
           setCurrentStage(null);
       }
-    };
-  })
+    }
+  });
+
   return (
     <a.group ref={islandRef} {...props}>
       <mesh
@@ -226,5 +240,3 @@ const Island = ({ isRotating, setIsRotating, ...props }) => {
     </a.group>
   )
 }
-
-export default Island;
