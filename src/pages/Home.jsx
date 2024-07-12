@@ -59,14 +59,15 @@ const Home = () => {
           <Bird />
           <Sky />
           <Island
+            isRotating={isRoatating}
+            setIsRotating={setIsRotating}
             position={islandPosition}
             scale={islandScale}
-            rotation={islandRoatation}
-            isRoatating={isRoatating}
-            setisRoatating={setIsRotating}
+            rotation={islandRoatation} // fixed typo here
           />
           <Plane
             isRoatating={isRoatating}
+            setIsRotating={isRoatating}
             planeScale={planeScale}
             planePosition={planePosition}
             rotation={[0, 20, 0]}
