@@ -15,7 +15,7 @@ import { a } from '@react-spring/three';
 import islandScene from '../assets/3d/island.glb';
 
 // eslint-disable-next-line no-unused-vars
-export function Island({ isRotating, setIsRotating, ...props }) {
+export function Island({ isRotating, setIsRotating, setCurrentStage, ...props }) {
 
   const islandRef = useRef();
 
@@ -187,6 +187,7 @@ export function Island({ isRotating, setIsRotating, ...props }) {
       const normalizedRotation =
         ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
+      /** !!! Implement setCurrentStage() to use */
       // Set the current stage based on the island's orientation
       switch (true) {
         case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
