@@ -5,7 +5,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://kobi070.github.io/Protfolio3D.git",
+  "homepage": "https://kobi070.github.io/Protfolio3D",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
