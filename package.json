@@ -1,7 +1,9 @@
 {
   "name": "3dprotfolio",
-  "author": {"email": "kobi070@gmail.com",
-    "name": "Kobi Kuzi"},
+  "author": {
+    "email": "kobi070@gmail.com",
+    "name": "Kobi Kuzi"
+  },
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -15,6 +17,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.108.3",
     "@react-three/fiber": "^8.16.8",
