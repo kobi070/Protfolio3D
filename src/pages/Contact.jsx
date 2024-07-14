@@ -2,7 +2,10 @@ import { useState, useRef, Suspense } from 'react'
 import emailjs from '@emailjs/browser'
 import { Canvas } from '@react-three/fiber';
 import Fox from '../models/Fox';
-import Loader from '../components/Loader'
+import Loader from '../components/Loader';
+import useAlert from '../hooks/useAlert';
+import Alert from '../components/Alert';
+
 
 const Contact = () => {
 
@@ -10,6 +13,8 @@ const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [isLoading, setisLoading] = useState(false);
   const [currentAnimations, setCurrentAnimations] = useState('idle');
+
+  const { alert, showAlert, hideAlert } = useAlert();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -39,18 +44,25 @@ const Contact = () => {
         message: form.message,
       },
       import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
-
     ).then(() => {
       setisLoading(false);
-      // TODO: to show success message
-      // TODO: to hide an alert
-      setForm({ name: '', email: '', message: '' });
+      showAlert({
+        show: true,
+        text: 'Message sent successfully!',
+        type: 'success'
+      });
+
+      setTimeout(() => {
+        hideAlert();
+        setCurrentAnimations('idle');
+        setForm({ name: '', email: '', message: '' });
+      }, [3000]);
 
     }).catch((error) => {
       setisLoading(false);
       setCurrentAnimations('idle');
       console.log(error);
-      // TODO: Show error message
+      showAlert({ show: true, text: 'I didnt recive your message', type: 'danger' })
 
     });
 
@@ -59,6 +71,7 @@ const Contact = () => {
   return (
     <section className='relative flex lg:flex-row flex-col
     max-container'>
+      {alert.show && <Alert {...alert} />}
       <div className='flex-1 flex flex-col'>
         <h1 className='sm:text-5xl text-3xl font-extrabold sm:leading-snug font-manrope'>
           Get in Touch
