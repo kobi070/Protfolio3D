@@ -4,18 +4,20 @@ import emailjs from '@emailjs/browser'
 const Contact = () => {
 
   const formRef = useRef(null);
-  const [form, setform] = useState({ name: '', email: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [isLoading, setisLoading] = useState(false);
 
   const handleChange = (e) => {
-    setform({ ...form, [e.target.name]: e.target.value })
+    setForm({ ...form, [e.target.name]: e.target.value })
   };
 
   const handleFocused = (e) => {
     e.preventDefault();
     setisLoading(true);
 
-    emailjs.sendForm(
+    console.log(import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,);
+    emailjs.send(
       import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
       import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
       {
@@ -31,12 +33,13 @@ const Contact = () => {
       setisLoading(false);
       // TODO: to show success message
       // TODO: to hide an alert
+      setForm({ name: '', email: '', message: '' });
 
     }).catch((error) => {
       setisLoading(false);
       console.log(error);
       // TODO: Show error message
-      
+
     });
   };
 
