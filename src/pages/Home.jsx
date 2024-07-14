@@ -3,16 +3,11 @@ import { Canvas } from '@react-three/fiber';
 import Loader from '../components/Loader';
 import { Island, Bird, Plane, Sky } from '../models';
 import { useState } from 'react';
-
-// Implement later 
-{/* <div className='absolute top-28 lef-0 right-0 z-10 flex
-      items-centre justify-center'>
-        POPUP
-      </div> */}
+import HomeInfo from '../components/HomeInfo';
 
 const Home = () => {
   const [isRoatating, setIsRotating] = useState(false);
-  const [currentState, setCurrentStage] = useState(1);
+  const [currentStage, setCurrentStage] = useState(1);
 
 
   const adjustIslandForScreenSize = () => {
@@ -46,6 +41,9 @@ const Home = () => {
 
   return (
     <section className='w-full h-screen relative'>
+      <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
+        {currentStage && <HomeInfo currentStage={currentStage} />}
+      </div>
       <Canvas className={`w-full h-screen bg-transparent ${isRoatating ?
         'cursor-grabbing' : 'cursor-grab'}`}
         camera={{ near: 0.1, far: 1000 }}>
@@ -58,7 +56,7 @@ const Home = () => {
 
 
           <Bird />
-          <Sky isRoatating={isRoatating}/>
+          <Sky isRoatating={isRoatating} />
           <Island
             isRotating={isRoatating}
             setIsRotating={setIsRotating}
