@@ -6,10 +6,10 @@ import { Home, About, Projects, Contact } from './pages';
 const App = () => {
     return (
         <main className='bg-slate-300/20'>
-            <Router>
+            <Router basename="/Protfolio3D">
                 <Navbar />
                 <Routes>
-                    <Route path='/Protfolio3D' element={<Home />} />
+                    <Route path='/' element={<Home />} />
                     <Route path='/about' element={<About />} />
                     <Route path='/projects' element={<Projects />} />
                     <Route path='/contact' element={<Contact />} />
