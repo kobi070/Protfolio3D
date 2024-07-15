@@ -70,7 +70,7 @@ const Contact = () => {
 
   return (
     <section className='relative flex lg:flex-row flex-col
-    max-container'>
+    max-container h-[100vh]'>
       {alert.show && <Alert {...alert} />}
       <div className='flex-1 flex flex-col'>
         <h1 className='sm:text-5xl text-3xl font-extrabold sm:leading-snug font-manrope'>
