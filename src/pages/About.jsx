@@ -3,6 +3,8 @@ import 'react-vertical-timeline-component/style.min.css';
 import { skills, experiences } from '../constants'
 import CTA from '../components/CTA';
 
+/// TODO: Change Work Experience section to my work experience
+
 const About = () => {
   return (
     <section className='max-container'>
