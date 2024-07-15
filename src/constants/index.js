@@ -23,7 +23,18 @@ import {
     summiz,
     tailwindcss,
     threads,
-    typescript
+    typescript,
+    csharp,
+    python,
+    game,
+    store,
+    people,
+    weather,
+    cost,
+    brain,
+    chat,
+    c,
+    cpp
 } from "../assets/icons";
 
 export const skills = [
@@ -63,9 +74,19 @@ export const skills = [
         type: "Database",
     },
     {
-        imageUrl: motion,
-        name: "Motion",
-        type: "Animation",
+        imageUrl: c,
+        name: "C",
+        type: "Backend",
+    },
+    {
+        imageUrl: cpp,
+        name: "C++",
+        type: "Backend",
+    },
+    {
+        imageUrl: csharp,
+        name: "C#",
+        type: "Backend",
     },
     {
         imageUrl: mui,
@@ -106,7 +127,12 @@ export const skills = [
         imageUrl: typescript,
         name: "TypeScript",
         type: "Frontend",
-    }
+    },
+    {
+        imageUrl: python,
+        name: "Python",
+        type: "Backend",
+    },
 ];
 
 export const experiences = [
@@ -173,57 +199,71 @@ export const socialLinks = [
     {
         name: 'GitHub',
         iconUrl: github,
-        link: 'https://github.com/YourGitHubUsername',
+        link: 'https://github.com/kobi070',
     },
     {
         name: 'LinkedIn',
         iconUrl: linkedin,
-        link: 'https://www.linkedin.com/in/YourLinkedInUsername',
+        link: 'https://www.linkedin.com/in/kobi-kuzi',
     }
 ];
 
 export const projects = [
     {
-        iconUrl: pricewise,
+        iconUrl: game,
         theme: 'btn-back-red',
-        name: 'Amazon Price Tracker',
-        description: 'Developed a web application that tracks and notifies users of price changes for products on Amazon, helping users find the best deals.',
-        link: 'https://github.com/adrianhajdin/pricewise',
+        name: 'Othello',
+        description: 'DThis is an implementation of the classic board game Othello (also known as Reversi) in C#. The game includes a graphical user interface and an AI opponent.',
+        link: 'https://github.com/kobi070/Othello',
     },
     {
-        iconUrl: threads,
+        iconUrl: store,
         theme: 'btn-back-green',
-        name: 'Full Stack Threads Clone',
-        description: 'Created a full-stack replica of the popular discussion platform "Threads," enabling users to post and engage in threaded conversations.',
-        link: 'https://github.com/adrianhajdin/threads',
+        name: 'Store Android App',
+        description: 'A Store app developed during 3rd year of school under Android 2 class. This project consists of a React Native app with Expo, axios, Paper.js, and React Native. Along with an Express server using Node.js, axios, bcrypt, cors, dotenv, jsonwebtoken, express-session, nodemon, and MongoDB.',
+        link: 'https://github.com/kobi070/Android2_Project',
     },
     {
         iconUrl: car,
         theme: 'btn-back-blue',
-        name: 'Car Finding App',
-        description: 'Designed and built a mobile app for finding and comparing cars on the market, streamlining the car-buying process.',
-        link: 'https://github.com/adrianhajdin/project_next13_car_showcase',
+        name: 'Garage Management',
+        description: 'The Garage Management System is a program designed to keep track of vehicles in a garage. It allows users to add and remove vehicles, view the list of vehicles in the garage, and search for specific vehicles in Rapier.',
+        link: 'https://github.com/kobi070/GarageManagment-System-C-Sharp',
     },
     {
-        iconUrl: snapgram,
+        iconUrl: people,
         theme: 'btn-back-pink',
-        name: 'Full Stack Instagram Clone',
-        description: 'Built a complete clone of Instagram, allowing users to share photos and connect with friends in a familiar social media environment.',
-        link: 'https://github.com/adrianhajdin/social_media_app',
+        name: 'User Interface Management system',
+        description: 'Hierarchical Menu Management System for Console Applications This project is a software component that assists in the display and management of hierarchical menus for console applications. It allows users to interact with various menus in a consistent and intuitive way.',
+        link: 'https://github.com/kobi070/User-Interface-managment-system---in-cs',
     },
     {
-        iconUrl: estate,
+        iconUrl: weather,
         theme: 'btn-back-black',
-        name: 'Real-Estate Application',
-        description: 'Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.',
-        link: 'https://github.com/adrianhajdin/projects_realestate',
+        name: 'Weather Application',
+        description: 'Weather App is a web application that provides up-to-date weather information for a users location. It is built using modern web technologies, including React, Node.js',
+        link: 'https://kobi070.github.io/WeatherApp/',
     },
     {
-        iconUrl: summiz,
+        iconUrl: cost,
+        theme: 'btn-back-red',
+        name: 'Cost Manager',
+        description: 'This project is a RESTful web service for managing daily costs. The service is built using a MongoDB database and Express.js, and allows users to add new cost items and retrieve detailed reports of their expenses.',
+        link: 'https://github.com/kobi070/Cost-Manager-RESTfull-webservice',
+    },
+    {
+        iconUrl: brain,
+        theme: 'btn-back-green',
+        name: 'Anime Prediction',
+        description: 'This is the final project of a Data Science course, which aims to predict whether an anime will be successful or not based on its members count and score. The project is written in Python, using a variety of libraries such as Pandas, Numpy, Seaborn, Matplotlib, Yellowbrick for Scikit-learn, BeautifulSoup, and Selenium.',
+        link: 'https://github.com/kobi070/Data-Science-Project---HIT',
+    },
+    {
+        iconUrl: chat,
         theme: 'btn-back-yellow',
-        name: 'AI Summarizer Application',
-        description: 'App that leverages AI to automatically generate concise & informative summaries from lengthy text content, or blogs.',
-        link: 'https://github.com/adrianhajdin/project_ai_summarizer',
+        name: 'Chat Application',
+        description: 'This is a simple chat application built using React, Express, and Socket.IO. The application allows users to join a chat room and send messages in real-time. The messages are displayed in the chat window and are always scrolled to the bottom.',
+        link: 'https://github.com/kobi070/ChatApp',
     }
 ];
 
