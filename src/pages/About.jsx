@@ -42,16 +42,16 @@ const About = () => {
             )
           }
         </div>
-        <div className='py-16'>
+        {/* <div className='py-16'>
           <h3 className='subhead-text'>Work Experince</h3>
           <p>
             Software Developer with a B.Sc, in Computer Science based in Israel.
             passionate about building innovative software solutions.
             I specialize in both front-end and back-end development, database management, and DevOps practices.
           </p>
-        </div>
+        </div> */}
 
-        <div className='mt-12 flex'>
+        {/* <div className='mt-12 flex'>
           <VerticalTimeline>
             {experiences.map((experince) => (
               <VerticalTimelineElement
@@ -95,7 +95,8 @@ const About = () => {
               </VerticalTimelineElement>
             ))}
           </VerticalTimeline>
-        </div>
+        </div> */}
+
       </div>
       <hr className='border-slate-200' />
       <CTA />
