@@ -10,11 +10,15 @@ import Alert from '../components/Alert';
 const Contact = () => {
 
   const formRef = useRef(null);
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const { alert, showAlert, hideAlert } = useAlert();
   const [isLoading, setisLoading] = useState(false);
   const [currentAnimations, setCurrentAnimations] = useState('idle');
 
-  const { alert, showAlert, hideAlert } = useAlert();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -22,7 +26,6 @@ const Contact = () => {
 
   const handleFocused = (e) => {
     e.preventDefault();
-    setisLoading(true);
     setCurrentAnimations('hit');
   };
 
@@ -48,21 +51,29 @@ const Contact = () => {
       setisLoading(false);
       showAlert({
         show: true,
-        text: 'Message sent successfully!',
+        text: 'Thank you for your message 😃',
         type: 'success'
       });
 
       setTimeout(() => {
-        hideAlert();
+        hideAlert(false);
         setCurrentAnimations('idle');
-        setForm({ name: '', email: '', message: '' });
+        setForm({
+          name: '',
+          email: '',
+          message: ''
+        });
       }, [3000]);
 
     }).catch((error) => {
       setisLoading(false);
-      setCurrentAnimations('idle');
       console.log(error);
-      showAlert({ show: true, text: 'I didnt recive your message', type: 'danger' })
+      setCurrentAnimations('idle');
+      showAlert({
+        show: true,
+        text: 'I did not receive your message 😢',
+        type: 'danger'
+      })
 
     });
 
@@ -72,14 +83,19 @@ const Contact = () => {
     <section className='relative flex lg:flex-row flex-col
     max-container h-[100vh]'>
       {alert.show && <Alert {...alert} />}
+
       <div className='flex-1 flex flex-col'>
-        <h1 className='sm:text-5xl text-3xl font-extrabold sm:leading-snug font-manrope'>
+        <h1 className='sm:text-5xl text-3xl
+         font-extrabold sm:leading-snug font-manrope'>
           Get in Touch
         </h1>
+
+
         <form
           ref={formRef}
           className='w-full flex flex-col gap-7 mt-14'
-          onSubmit={handleSubmit}>
+          onSubmit={handleSubmit}
+        >
           <label className='text-black-500'>
             Name
             <input
@@ -91,8 +107,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               onFocus={handleFocused}
-              onBlur={handleBlur}>
-            </input>
+              onBlur={handleBlur} />
           </label>
 
           <label className='text-black-500'>
@@ -106,36 +121,36 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               onFocus={handleFocused}
-              onBlur={handleBlur}>
-            </input>
+              onBlur={handleBlur}
+            />
           </label>
 
           <label className='text-black-500'>
             Your Message
             <textarea
               name='message'
-              row={4}
+              row='4'
               className='textarea'
-              placeholder='Let me know how I can help you!'
+              placeholder='Let me know how I can help you, Write your thoughts here...'
               required
               value={form.message}
               onChange={handleChange}
               onFocus={handleFocused}
-              onBlur={handleBlur}>
-            </textarea>
+              onBlur={handleBlur}
+            />
           </label>
 
           <button
             type='submit'
-            className='btn'
             disabled={isLoading}
+            className='btn'
             onFocus={handleFocused}
             onBlur={handleBlur}>
             {isLoading ? 'Sending...' : 'Send Message'}
           </button>
-
         </form>
       </div>
+
       <div className='lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]'>
         <Canvas
           camera={{

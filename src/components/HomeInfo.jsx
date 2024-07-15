@@ -46,12 +46,22 @@ const HomeInfo = ({ currentStage }) => {
             </h1>
         ),
         2: (
-            <infoBox
-                text="Worked with many companies and picked up many skills along
-             the way"
-                link="/about"
-                btnTxt="Learn more"
-            />
+            // <infoBox
+            //     text="Worked with many companies and picked up many skills along
+            //  the way"
+            //     link="/about"
+            //     btnTxt="Learn more"
+            // />
+            <div className='info-box'>
+                <p className='font-medium text-center sm:text-xl'>
+                    Worked with many people and picked up many skills along the way
+                </p>
+
+                <Link to='/about' className='neo-brutalism-white neo-btn'>
+                    Learn more
+                    <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
+                </Link>
+            </div>
         ),
         3: (
             <div className='info-box'>
