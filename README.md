@@ -32,7 +32,7 @@ A dynamic 3D portfolio showcasing interactive models built with React and Three.
 ## Credits
 
 - Kobi Kuzi - Lead Developer
-- - [YouTube Tutorial Creator](https://www.youtube.com/@javascriptmastery) - For their helpful tutorials and guidance. The specific video used can be found [here](https://www.youtube.com/watch?v=FkowOdMjvYo&t=5900s).
+- [YouTube Tutorial Creator](https://www.youtube.com/@javascriptmastery) - For their helpful tutorials and guidance. The specific video used can be found [here](https://www.youtube.com/watch?v=FkowOdMjvYo&t=5900s).
 
 ## License
 
