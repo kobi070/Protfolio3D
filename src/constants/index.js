@@ -226,3 +226,5 @@ export const projects = [
         link: 'https://github.com/adrianhajdin/project_ai_summarizer',
     }
 ];
+
+/// TODO: Update this to add my own Projects
