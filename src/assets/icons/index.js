@@ -26,6 +26,17 @@ import arrow from './arrow.svg'
 import contact from './contact.svg'
 import soundon from './soundon.png'
 import soundoff from './soundoff.png'
+import csharp from './csharp.svg'
+import python from './python.svg'
+import game from './game.svg'
+import store from './store.svg'
+import people from './people.svg'
+import weather from './weather.svg'
+import cost from './cost.svg'
+import brain from './brain.svg'
+import chat from './chat.svg'
+import c from './c.svg'
+import cpp from './cpp.svg'
 
 export {
     css,
@@ -55,5 +66,16 @@ export {
     arrow,
     contact,
     soundon,
-    soundoff
+    soundoff,
+    csharp,
+    python,
+    game,
+    store,
+    people,
+    weather,
+    cost,
+    brain,
+    chat,
+    c,
+    cpp
 }
