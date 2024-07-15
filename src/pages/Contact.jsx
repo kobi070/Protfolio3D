@@ -2,13 +2,19 @@ import { useState, useRef, Suspense } from 'react'
 import emailjs from '@emailjs/browser'
 import { Canvas } from '@react-three/fiber';
 import Fox from '../models/Fox';
-import Loader from '../components/Loader'
+import Loader from '../components/Loader';
+import useAlert from '../hooks/useAlert';
+import Alert from '../components/Alert';
+
 
 const Contact = () => {
 
   const formRef = useRef(null);
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [isLoading, setisLoading] = useState(false);
+  const [currentAnimations, setCurrentAnimations] = useState('idle');
+
+  const { alert, showAlert, hideAlert } = useAlert();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -17,9 +23,16 @@ const Contact = () => {
   const handleFocused = (e) => {
     e.preventDefault();
     setisLoading(true);
+    setCurrentAnimations('hit');
+  };
 
-    console.log(import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-      import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,);
+  const handleBlur = () => { setCurrentAnimations('walk') };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setisLoading(true);
+    setCurrentAnimations('walk');
+
     emailjs.send(
       import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
       import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
@@ -31,27 +44,34 @@ const Contact = () => {
         message: form.message,
       },
       import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
-
     ).then(() => {
       setisLoading(false);
-      // TODO: to show success message
-      // TODO: to hide an alert
-      setForm({ name: '', email: '', message: '' });
+      showAlert({
+        show: true,
+        text: 'Message sent successfully!',
+        type: 'success'
+      });
+
+      setTimeout(() => {
+        hideAlert();
+        setCurrentAnimations('idle');
+        setForm({ name: '', email: '', message: '' });
+      }, [3000]);
 
     }).catch((error) => {
       setisLoading(false);
+      setCurrentAnimations('idle');
       console.log(error);
-      // TODO: Show error message
+      showAlert({ show: true, text: 'I didnt recive your message', type: 'danger' })
 
     });
-  };
 
-  const handleBlur = () => { };
-  const handleSubmit = () => { };
+  };
 
   return (
     <section className='relative flex lg:flex-row flex-col
-    max-container'>
+    max-container h-[100vh]'>
+      {alert.show && <Alert {...alert} />}
       <div className='flex-1 flex flex-col'>
         <h1 className='sm:text-5xl text-3xl font-extrabold sm:leading-snug font-manrope'>
           Get in Touch
@@ -124,13 +144,15 @@ const Contact = () => {
             near: 0.1,
             far: 1000
           }}>
-          <directionalLight intensity={2.5} position={[0,0,1]} />
+          <directionalLight intensity={2.5} position={[0, 0, 1]} />
           <ambientLight intensity={0.6} />
           <Suspense fallback={<Loader />}>
             <Fox
               position={[0.5, 0.35, 0]}
               rotation={[12.625, -0.625, 0]}
-              scale={[0.55, 0.55, 0.55]} />
+              scale={[0.55, 0.55, 0.55]}
+              currentAnimation={currentAnimations}
+            />
           </Suspense>
 
         </Canvas>
